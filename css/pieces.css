@@ -1,0 +1,103 @@
+.token {
+  position: absolute;
+  width: 5.2%;
+  height: 5.2%;
+  z-index: 10;
+  pointer-events: auto;
+  cursor: default;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform-origin: center bottom;
+}
+.token.green {
+  background-image: url('../assets/images/pieces/piece-green.png');
+}
+.token.yellow {
+  background-image: url('../assets/images/pieces/piece-yellow.png');
+}
+.token.blue {
+  background-image: url('../assets/images/pieces/piece-blue.png');
+}
+.token.red {
+  background-image: url('../assets/images/pieces/piece-red.png');
+}
+.token.clickable {
+  cursor: pointer;
+  pointer-events: auto;
+}
+.token.eligible {
+  animation: pulse-eligible-token 1.5s infinite ease-in-out;
+  cursor: pointer;
+  z-index: 12;
+}
+.token.eligible:hover {
+  transform: translateY(-8px) scale(1.22);
+  filter: drop-shadow(0 8px 12px rgba(255, 255, 255, 0.4));
+  z-index: 15;
+}
+@keyframes pulse-eligible-token {
+  0% {
+    filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.85));
+    transform: translateY(-2px);
+  }
+  100% {
+    filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+  }
+}
+.token.stack-size-1 {
+  margin-left: 0.73%;
+  margin-top: 0.73%;
+}
+.token.stack-size-2 {
+  width: 3.8%;
+  height: 3.8%;
+}
+.token.stack-size-2.stack-pos-0 {
+  margin-left: 0.3%;
+  margin-top: 1.4%;
+}
+.token.stack-size-2.stack-pos-1 {
+  margin-left: 2.5%;
+  margin-top: 1.4%;
+}
+.token.stack-size-3 {
+  width: 3.2%;
+  height: 3.2%;
+}
+.token.stack-size-3.stack-pos-0 {
+  margin-left: 1.73%;
+  margin-top: 0.3%;
+}
+.token.stack-size-3.stack-pos-1 {
+  margin-left: 0.3%;
+  margin-top: 2.8%;
+}
+.token.stack-size-3.stack-pos-2 {
+  margin-left: 3.16%;
+  margin-top: 2.8%;
+}
+.token.stack-size-4 {
+  width: 2.9%;
+  height: 2.9%;
+}
+.token.stack-size-4.stack-pos-0 {
+  margin-left: 0.3%;
+  margin-top: 0.3%;
+}
+.token.stack-size-4.stack-pos-1 {
+  margin-left: 3.4%;
+  margin-top: 0.3%;
+}
+.token.stack-size-4.stack-pos-2 {
+  margin-left: 0.3%;
+  margin-top: 3.4%;
+}
+.token.stack-size-4.stack-pos-3 {
+  margin-left: 3.4%;
+  margin-top: 3.4%;
+}

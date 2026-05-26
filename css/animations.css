@@ -1,0 +1,97 @@
+.token.moving {
+  z-index: 20 !important;
+  animation: token-hop-step 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+@keyframes token-hop-step {
+  0% {
+    transform: scale(1.0) translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    transform: scale(1.28) translateY(-14px);
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    transform: scale(1.0) translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  }
+}
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  transform: scale(0);
+  animation: ripple-swell 0.55s ease-out;
+  pointer-events: none;
+}
+@keyframes ripple-swell {
+  to {
+    transform: scale(4.0);
+    opacity: 0;
+  }
+}
+.capture-burst {
+  position: absolute;
+  pointer-events: none;
+  z-index: 50;
+}
+.capture-spark {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform-origin: center;
+  animation: spark-shoot 0.65s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+@keyframes spark-shoot {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(0.1);
+    opacity: 0;
+  }
+}
+.safe-landing-ring {
+  position: absolute;
+  border: 3px solid var(--color-yellow);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 40;
+  animation: safe-ring-expand 0.8s ease-out forwards;
+}
+@keyframes safe-ring-expand {
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    width: 90px;
+    height: 90px;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+}
+.pulse {
+  animation: element-pulse 2.0s infinite;
+}
+@keyframes element-pulse {
+  0% { transform: scale(1.0); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1.0); }
+}
+.float-logo {
+  animation: logo-float 4.0s ease-in-out infinite;
+}
+@keyframes logo-float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
+}
