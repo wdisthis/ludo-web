@@ -101,3 +101,8 @@
   margin-left: 3.4%;
   margin-top: 3.4%;
 }
+.token.token-base {
+  margin: 0 !important;
+  width: 5.2% !important;
+  height: 5.2% !important;
+}

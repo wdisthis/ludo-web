@@ -66,8 +66,14 @@ const LudoBoard = {
         tokenEl.dataset.tokenId = token.id;
         
         const cellPercentage = 100 / 15;
-        tokenEl.style.left = `${gx * cellPercentage}%`;
-        tokenEl.style.top = `${gy * cellPercentage}%`;
+        if (token.step === -1) {
+          tokenEl.classList.add('token-base');
+          tokenEl.style.left = `${gx * cellPercentage - 2.27}%`;
+          tokenEl.style.top = `${gy * cellPercentage - 2.27}%`;
+        } else {
+          tokenEl.style.left = `${gx * cellPercentage}%`;
+          tokenEl.style.top = `${gy * cellPercentage}%`;
+        }
         
         tokenEl.classList.add(`stack-size-${totalInCell}`);
         tokenEl.classList.add(`stack-pos-${index}`);
