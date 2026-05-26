@@ -1,7 +1,3 @@
-/* ==========================================================================
-   PREMIUM 3D CSS ROLLING DICE (css/dice.css)
-   ========================================================================== */
-
 .dice-action-box {
   display: flex;
   flex-direction: column;
@@ -13,14 +9,12 @@
   padding: 20px;
   width: 100%;
 }
-
 .turn-announcement {
   text-align: center;
   width: 100%;
   border-bottom: 1px solid var(--glass-border);
   padding-bottom: 12px;
 }
-
 .turn-label {
   font-size: 0.65rem;
   font-weight: 700;
@@ -30,7 +24,6 @@
   display: block;
   margin-bottom: 4px;
 }
-
 .current-turn-badge {
   font-family: var(--font-heading);
   font-size: 1.25rem;
@@ -39,44 +32,32 @@
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
 }
-
-/* Dynamic color theme text bindings */
 .current-turn-badge.green { color: var(--color-green); text-shadow: 0 0 12px var(--color-green-glow); }
 .current-turn-badge.yellow { color: var(--color-yellow); text-shadow: 0 0 12px var(--color-yellow-glow); }
 .current-turn-badge.blue { color: var(--color-blue); text-shadow: 0 0 12px var(--color-blue-glow); }
 .current-turn-badge.red { color: var(--color-red); text-shadow: 0 0 12px var(--color-red-glow); }
-
-/* ==========================================================================
-   3D PERSPECTIVE CUBE ENGINE
-   ========================================================================== */
-
 .dice-wrapper {
   width: 120px;
   height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 400px; /* 3D depth */
+  perspective: 400px;
 }
-
 .dice-container {
   width: 70px;
   height: 70px;
   cursor: pointer;
   outline: none;
 }
-
-/* 3D Cube Structure */
 .dice-cube {
   position: relative;
   width: 70px;
   height: 70px;
   transform-style: preserve-3d;
   transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.3, 1);
-  transform: rotateX(-15deg) rotateY(30deg); /* Cozy resting angle */
+  transform: rotateX(-15deg) rotateY(30deg);
 }
-
-/* Face Styling */
 .dice-cube .face {
   position: absolute;
   width: 70px;
@@ -84,49 +65,34 @@
   background: rgba(255, 255, 255, 0.95);
   border: 2px solid var(--slate-dark);
   border-radius: 14px;
-  box-shadow: 
+  box-shadow:
     inset 0 0 8px rgba(0, 0, 0, 0.15),
     0 4px 10px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  /* Dice Dot Setup */
   font-family: var(--font-heading);
   font-size: 1.8rem;
   font-weight: 800;
   color: var(--bg-primary);
   user-select: none;
 }
-
-/* Standard 3D Rotations for 6 Faces (Radius offset is exactly 35px) */
 .dice-cube .face.front  { transform: rotateY(0deg) translateZ(35px); }
 .dice-cube .face.back   { transform: rotateY(180deg) translateZ(35px); }
 .dice-cube .face.right  { transform: rotateY(90deg) translateZ(35px); }
 .dice-cube .face.left   { transform: rotateY(-90deg) translateZ(35px); }
 .dice-cube .face.top    { transform: rotateX(90deg) translateZ(35px); }
 .dice-cube .face.bottom { transform: rotateX(-90deg) translateZ(35px); }
-
-/* ==========================================================================
-   STATIC PROJECTIONS FOR FINAL ROLLED VALUES
-   ========================================================================== */
-
 .dice-cube.roll-1 { transform: rotateX(360deg) rotateY(360deg); }
 .dice-cube.roll-2 { transform: rotateX(-90deg) rotateY(360deg); }
 .dice-cube.roll-3 { transform: rotateX(360deg) rotateY(-90deg); }
 .dice-cube.roll-4 { transform: rotateX(360deg) rotateY(90deg); }
 .dice-cube.roll-5 { transform: rotateX(90deg) rotateY(360deg); }
 .dice-cube.roll-6 { transform: rotateX(180deg) rotateY(360deg); }
-
-/* ==========================================================================
-   ROLLING ROTATIONAL ANIMATION WITH MOTION BLUR
-   ========================================================================== */
-
 .dice-cube.rolling {
   animation: roll-spin 0.75s ease-in-out;
   filter: blur(0.4px);
 }
-
 @keyframes roll-spin {
   0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
   25% { transform: rotateX(180deg) rotateY(90deg) rotateZ(45deg); }
@@ -134,11 +100,6 @@
   75% { transform: rotateX(180deg) rotateY(360deg) rotateZ(180deg); }
   100% { transform: rotateX(540deg) rotateY(720deg) rotateZ(360deg); }
 }
-
-/* ==========================================================================
-   ACTION ROLLING BUTTON & SHINE
-   ========================================================================== */
-
 .roll-btn {
   width: 100%;
   background: linear-gradient(135deg, var(--color-blue) 0%, #1d4ed8 100%);
@@ -154,20 +115,18 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  box-shadow: 
+  box-shadow:
     0 8px 16px -4px var(--color-blue-glow),
     inset 0 1px 1px rgba(255, 255, 255, 0.2);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
-
 .roll-btn-icon {
   width: 18px;
   height: 18px;
   transition: transform 0.3s;
 }
-
 .roll-btn::before {
   content: '';
   position: absolute;
@@ -179,26 +138,21 @@
   transform: skewX(-25deg);
   transition: 0.75s;
 }
-
 .roll-btn:hover:not(:disabled)::before {
   left: 150%;
 }
-
 .roll-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 
+  box-shadow:
     0 12px 20px -4px var(--color-blue-glow),
     0 0 10px rgba(59, 130, 246, 0.2);
 }
-
 .roll-btn:hover:not(:disabled) .roll-btn-icon {
   transform: rotate(45deg) scale(1.1);
 }
-
 .roll-btn:active:not(:disabled) {
   transform: translateY(0);
 }
-
 .roll-btn:disabled {
   background: var(--bg-tertiary);
   color: var(--slate-dim);
@@ -206,11 +160,9 @@
   box-shadow: none;
   opacity: 0.5;
 }
-
 .roll-btn.pulse-active {
   animation: pulse-button-active 1.5s infinite;
 }
-
 @keyframes pulse-button-active {
   0% { box-shadow: 0 0 0 0px var(--color-blue-glow); }
   50% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.2); }

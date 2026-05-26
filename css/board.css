@@ -1,14 +1,9 @@
-/* ==========================================================================
-   BOARD VIEWPLAY LAYER SYSTEM (css/board.css)
-   ========================================================================== */
-
 .board-deck {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
 }
-
 .board-wrapper {
   position: relative;
   width: 100%;
@@ -17,15 +12,13 @@
   background: var(--bg-primary);
   border-radius: 24px;
   padding: 12px;
-  box-shadow: 
+  box-shadow:
     0 25px 50px -12px rgba(0, 0, 0, 0.5),
     inset 0 1px 1px rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-/* Glassmorphic outer glow ring surrounding playfield */
 .board-glow-frame {
   position: absolute;
   top: -1px;
@@ -36,12 +29,10 @@
   border: 1px solid var(--glass-border);
   pointer-events: none;
   z-index: 2;
-  box-shadow: 
+  box-shadow:
     0 0 30px rgba(0, 0, 0, 0.25),
     inset 0 0 15px rgba(255, 255, 255, 0.03);
 }
-
-/* Responsive Scaling board target */
 .ludo-board {
   position: relative;
   width: 100%;
@@ -51,8 +42,6 @@
   box-shadow: 0 10px 20px rgba(0,0,0,0.3);
   background-color: #ffffff;
 }
-
-/* scalable SVG vector backing */
 .board-svg-bg {
   position: absolute;
   top: 0;
@@ -64,11 +53,6 @@
   z-index: 1;
   display: block;
 }
-
-/* ==========================================================================
-   15x15 CELL-GRID OVERLAY SYSTEM
-   ========================================================================== */
-
 .board-interactive-layer {
   position: absolute;
   top: 0;
@@ -76,14 +60,10 @@
   width: 100%;
   height: 100%;
   z-index: 3;
-  
-  /* Mathematical Grid matching Ludo structure exactly */
   display: grid;
   grid-template-columns: repeat(15, 1fr);
   grid-template-rows: repeat(15, 1fr);
 }
-
-/* Invisible cells representing positions for click intercepts */
 .cell-overlay {
   width: 100%;
   height: 100%;
@@ -92,44 +72,28 @@
   transition: all 0.2s ease;
   user-select: none;
 }
-
-/* Interactive path cells */
 .cell-overlay.clickable {
   cursor: pointer;
 }
-
 .cell-overlay.clickable:hover {
   background-color: rgba(255, 255, 255, 0.16);
   box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.25);
 }
-
-/* Safe Zone graphical highlights */
 .cell-overlay.safe-zone-highlight {
   background-color: rgba(30, 41, 59, 0.05);
 }
-
-/* Overlay highlights for debugging and movement paths */
 .cell-overlay.path-highlight {
   background-color: rgba(59, 130, 246, 0.2);
   box-shadow: inset 0 0 6px var(--color-blue);
   animation: pulse-path-highlight 1.5s infinite ease-in-out;
 }
-
-/* CSS Grid positioning offsets mapped directly to SVG cells */
 .grid-cell {
-  /* Columns and rows will be bound inline or dynamically by JS */
 }
-
 @keyframes pulse-path-highlight {
   0% { opacity: 0.6; }
   50% { opacity: 1.0; }
   100% { opacity: 0.6; }
 }
-
-/* ==========================================================================
-   TOKEN & VISUAL EFFECTS LAYERING
-   ========================================================================== */
-
 .pieces-layer {
   position: absolute;
   top: 0;
@@ -137,9 +101,8 @@
   width: 100%;
   height: 100%;
   z-index: 5;
-  pointer-events: none; /* Mouse clicks pass through to interactive layer */
+  pointer-events: none;
 }
-
 .effects-layer {
   position: absolute;
   top: 0;

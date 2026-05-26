@@ -1,30 +1,19 @@
-/* ==========================================================================
-   GLOSSY 3D GAME TOKENS (css/pieces.css)
-   ========================================================================== */
-
 .token {
   position: absolute;
-  /* Mathematically scaled: 1 cell is 6.66% of board, token is 5.2% */
   width: 5.2%;
   height: 5.2%;
   border-radius: 50%;
   z-index: 10;
-  pointer-events: auto; /* Clickable */
+  pointer-events: auto;
   cursor: default;
-  
-  /* 3D Spheroid Gloss styling */
   background-size: 200% 200%;
-  box-shadow: 
+  box-shadow:
     0 4px 8px rgba(0, 0, 0, 0.4),
     inset 0 -3px 6px rgba(0, 0, 0, 0.3),
     inset 0 3px 6px rgba(255, 255, 255, 0.4);
-  
-  /* Animation bindings */
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   transform-origin: center bottom;
 }
-
-/* 3D Glass Gloss Reflection Overlay ring inside token */
 .token::before {
   content: '';
   position: absolute;
@@ -37,8 +26,6 @@
   transform: rotate(-15deg);
   pointer-events: none;
 }
-
-/* Shadow underneath token */
 .token::after {
   content: '';
   position: absolute;
@@ -53,93 +40,61 @@
   pointer-events: none;
   transition: all 0.3s;
 }
-
-/* ==========================================================================
-   COLOR SCHEMES (Glossy gradients with sleek slate borders)
-   ========================================================================== */
-
-/* Green Token */
 .token.green {
   background-image: radial-gradient(circle at 35% 30%, #76ec9d 0%, #2ecc71 45%, #1b8947 90%);
   border: 1.5px solid #145a32;
 }
-
-/* Yellow Token */
 .token.yellow {
   background-image: radial-gradient(circle at 35% 30%, #fff080 0%, #ffcc00 45%, #b38600 90%);
   border: 1.5px solid #7d5d00;
 }
-
-/* Blue Token */
 .token.blue {
   background-image: radial-gradient(circle at 35% 30%, #85b3ff 0%, #3b82f6 45%, #1d4ed8 90%);
   border: 1.5px solid #1e3a8a;
 }
-
-/* Red Token */
 .token.red {
   background-image: radial-gradient(circle at 35% 30%, #ff9494 0%, #ff4d4d 45%, #c01b1b 90%);
   border: 1.5px solid #780d0d;
 }
-
-/* ==========================================================================
-   INTERACTIVE STATES (Hover and Eligible-To-Move Indicators)
-   ========================================================================== */
-
 .token.clickable {
   cursor: pointer;
   pointer-events: auto;
 }
-
-/* Pulse Glow indicating this token can move */
 .token.eligible {
   animation: pulse-eligible-token 1.5s infinite ease-in-out;
   cursor: pointer;
   z-index: 12;
 }
-
 .token.eligible:hover {
   transform: translateY(-8px) scale(1.22);
-  box-shadow: 
+  box-shadow:
     0 12px 20px rgba(0, 0, 0, 0.5),
     inset 0 -3px 6px rgba(0, 0, 0, 0.3),
     inset 0 3px 6px rgba(255, 255, 255, 0.6);
   z-index: 15;
 }
-
 .token.eligible:hover::after {
   transform: scale(1.3);
   bottom: -8px;
   background: rgba(0, 0, 0, 0.65);
   filter: blur(3px);
 }
-
 @keyframes pulse-eligible-token {
-  0% { 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), 0 0 0 0px rgba(255, 255, 255, 0.6); 
+  0% {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), 0 0 0 0px rgba(255, 255, 255, 0.6);
   }
-  50% { 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), 0 0 10px 4px rgba(255, 255, 255, 0.8); 
+  50% {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), 0 0 10px 4px rgba(255, 255, 255, 0.8);
     transform: translateY(-2px);
   }
-  100% { 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), 0 0 0 0px rgba(255, 255, 255, 0.6); 
+  100% {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), 0 0 0 0px rgba(255, 255, 255, 0.6);
   }
 }
-
-/* ==========================================================================
-   AUTOMATIC DYNAMIC TOKEN STACKING GRID
-   When multiple tokens share a cell, they scale down and offset so all are visible!
-   ========================================================================== */
-
-/* Single Token in cell (Default centered) */
 .token.stack-size-1 {
-  /* Center offset within the 6.66% cell width */
   margin-left: 0.73%;
   margin-top: 0.73%;
 }
-
-/* 2 Tokens Stacked in a cell (Side by Side) */
 .token.stack-size-2 {
   width: 3.8%;
   height: 3.8%;
@@ -152,8 +107,6 @@
   margin-left: 2.5%;
   margin-top: 1.4%;
 }
-
-/* 3 Tokens Stacked in a cell (Triangle formation) */
 .token.stack-size-3 {
   width: 3.2%;
   height: 3.2%;
@@ -170,8 +123,6 @@
   margin-left: 3.16%;
   margin-top: 2.8%;
 }
-
-/* 4 Tokens Stacked in a cell (2x2 Quad Grid) */
 .token.stack-size-4 {
   width: 2.9%;
   height: 2.9%;

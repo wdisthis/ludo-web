@@ -5,33 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ludo Cozy Club - Premium Family Board Game</title>
   <meta name="description" content="Play Ludo Cozy Club, the ultimate premium family board game featuring smooth animations, cozy marimba music, realistic dice, and smart AI opponents.">
-  
-  <!-- Premium Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- CSS Styling Layers -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/board.css">
   <link rel="stylesheet" href="css/pieces.css">
   <link rel="stylesheet" href="css/dice.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/modal.css">
-  
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 </head>
 <body>
-
-  <!-- Ambient Glowing Backdrop Orbs -->
   <div class="ambient-glow glow-1" aria-hidden="true"></div>
   <div class="ambient-glow glow-2" aria-hidden="true"></div>
-
-  <!-- Main Application Wrapper -->
   <main class="game-container" id="ludo-app">
-    
-    <!-- HEADER BAR: Cozy Logo & Quick Stats -->
     <header class="game-header">
       <div class="logo-area">
         <img src="assets/images/logo.png" alt="Ludo Cozy Club Logo" class="app-logo" id="logo-img">
@@ -40,8 +28,6 @@
           <span class="logo-subtitle">Family Playtime</span>
         </div>
       </div>
-      
-      <!-- Quick Control Deck -->
       <div class="header-controls">
         <button class="icon-btn" id="btn-sound-toggle" title="Toggle Sound" aria-label="Toggle Sound">
           <img src="assets/images/ui/icon-sound-on.png" alt="Sound On" id="img-sound-status">
@@ -54,16 +40,10 @@
         </button>
       </div>
     </header>
-
-    <!-- MAIN INTERACTIVE LAYOUT -->
     <div class="main-layout">
-      
-      <!-- LEFT DECK: Scoreboard & Turn Manager -->
       <aside class="panel-side player-panel" id="scoreboard-panel">
         <h2 class="panel-title">Players</h2>
         <div class="player-cards-container">
-          
-          <!-- Player Card: Green -->
           <div class="player-card card-green" id="card-player-0" data-player-id="0">
             <div class="avatar-ring">
               <div class="avatar-inner fill-green"></div>
@@ -74,8 +54,6 @@
             </div>
             <div class="token-counter-mini" title="Active pieces outside base" id="counter-player-0">0/4</div>
           </div>
-
-          <!-- Player Card: Yellow -->
           <div class="player-card card-yellow" id="card-player-1" data-player-id="1">
             <div class="avatar-ring">
               <div class="avatar-inner fill-yellow"></div>
@@ -86,8 +64,6 @@
             </div>
             <div class="token-counter-mini" id="counter-player-1">0/4</div>
           </div>
-
-          <!-- Player Card: Blue -->
           <div class="player-card card-blue" id="card-player-2" data-player-id="2">
             <div class="avatar-ring">
               <div class="avatar-inner fill-blue"></div>
@@ -98,8 +74,6 @@
             </div>
             <div class="token-counter-mini" id="counter-player-2">0/4</div>
           </div>
-
-          <!-- Player Card: Red -->
           <div class="player-card card-red" id="card-player-3" data-player-id="3">
             <div class="avatar-ring">
               <div class="avatar-inner fill-red"></div>
@@ -110,48 +84,28 @@
             </div>
             <div class="token-counter-mini" id="counter-player-3">0/4</div>
           </div>
-          
         </div>
       </aside>
-
-      <!-- CENTER DECK: Scalable Ludo Board -->
       <section class="board-deck">
         <div class="board-wrapper">
-          <!-- Glassmorphic Board Boarder Outer Glow Frame -->
           <div class="board-glow-frame"></div>
-          
-          <!-- Ludo Playfield Container -->
           <div class="ludo-board" id="game-board-view">
-            <!-- Background scalable vector board -->
             <img src="assets/images/board.svg" alt="Ludo Board" class="board-svg-bg" id="board-asset-img">
-            
-            <!-- Absolute Overlay Cell Layer for Interactive Clicks & Piece Placements -->
             <div class="board-interactive-layer" id="board-cells-container"></div>
-            
-            <!-- Absolute Layer containing all player tokens/pieces -->
             <div class="pieces-layer" id="board-pieces-container"></div>
-            
-            <!-- Firework/Celebrative Effects Overlay Layer -->
             <div class="effects-layer" id="board-effects-container"></div>
           </div>
         </div>
       </section>
-
-      <!-- RIGHT DECK: Roll Center & Action Hub -->
       <aside class="panel-side dice-panel">
         <h2 class="panel-title">Turn Actions</h2>
-        
         <div class="dice-action-box">
-          <!-- Turn Announcement Banner -->
           <div class="turn-announcement" id="turn-banner">
             <span class="turn-label">CURRENT TURN</span>
             <div class="current-turn-badge" id="active-turn-color">Green</div>
           </div>
-          
-          <!-- Interactive 3D Dice Box -->
           <div class="dice-wrapper">
             <div class="dice-container" id="dice-touch-area" role="button" aria-label="Roll Dice" tabindex="0">
-              <!-- Beautiful 3D CSS cube representation of the die -->
               <div class="dice-cube" id="dice-3d-model">
                 <div class="face front">1</div>
                 <div class="face back">6</div>
@@ -162,15 +116,11 @@
               </div>
             </div>
           </div>
-          
-          <!-- Roll Trigger Action button -->
           <button class="roll-btn ripple" id="btn-roll-dice" disabled>
             <img src="assets/images/ui/btn-roll.png" alt="" class="roll-btn-icon" aria-hidden="true">
             <span class="roll-btn-text" id="roll-status-text">Roll Dice</span>
           </button>
         </div>
-        
-        <!-- Live Action Ticker/Log -->
         <div class="game-log-box">
           <div class="log-header">
             <h3>Match Log</h3>
@@ -181,19 +131,13 @@
           </div>
         </div>
       </aside>
-      
     </div>
   </main>
-
-  <!-- --- MODAL DIALOG LAYERS --- -->
-
-  <!-- 1. Start Menu & Player Setup Modal -->
   <dialog class="glass-modal" id="modal-start-menu" open>
     <div class="modal-content text-center">
       <img src="assets/images/logo.png" alt="Logo" class="modal-logo">
       <h2 class="modal-title outfit-font">Ludo Cozy Club</h2>
       <p class="modal-subtitle">Set up your cozy board game adventure</p>
-      
       <div class="modal-section text-left">
         <h3>Game Mode Selection</h3>
         <div class="mode-select-grid">
@@ -211,11 +155,9 @@
           </label>
         </div>
       </div>
-      
       <div class="modal-section text-left" id="player-config-section">
         <h3>Configure Players</h3>
         <div class="player-setup-list" id="setup-players-container">
-          <!-- Setup row template for 4 players -->
           <div class="setup-row" data-id="0">
             <span class="color-dot bg-green" title="Green"></span>
             <input type="text" class="player-input" value="Player 1" id="input-player-name-0" maxlength="12" aria-label="Player 1 Name">
@@ -253,18 +195,14 @@
           </div>
         </div>
       </div>
-      
       <button class="primary-btn pulse" id="btn-start-game">
         <span>START ADVENTURE</span>
       </button>
     </div>
   </dialog>
-
-  <!-- 2. Settings Preferences Modal -->
   <dialog class="glass-modal" id="modal-settings">
     <div class="modal-content">
       <h2 class="modal-title outfit-font">Settings</h2>
-      
       <div class="modal-section">
         <h3>Audio Control</h3>
         <div class="setting-row">
@@ -276,7 +214,6 @@
           <input type="range" class="volume-slider" id="slider-volume-sfx" min="0" max="100" value="70">
         </div>
       </div>
-      
       <div class="modal-section">
         <h3>AI & Gameplay Options</h3>
         <div class="setting-row toggle-row">
@@ -288,21 +225,15 @@
           <span class="toggle-description" id="speed-desc">Normal Speed</span>
         </div>
       </div>
-      
       <button class="secondary-btn" id="btn-settings-close">Save & Close</button>
     </div>
   </dialog>
-
-  <!-- 3. Victory Celebration Modal -->
   <dialog class="glass-modal celebrate-modal" id="modal-win-screen">
     <div class="modal-content text-center">
       <div class="crown-glow">🏆</div>
       <h2 class="celebration-title outfit-font">Victory Celebrations!</h2>
       <p class="winner-announcement" id="winner-name-display">Green Player wins the match!</p>
-      
-      <!-- Celebrative fireworks particles background inside modal -->
       <div class="fireworks-canvas-container" id="modal-fireworks-bg"></div>
-      
       <div class="win-stats-box">
         <h3>Match Achievements</h3>
         <div class="stats-row">
@@ -314,15 +245,12 @@
           <span id="stat-rolls">0</span>
         </div>
       </div>
-      
       <div class="modal-action-row">
         <button class="primary-btn" id="btn-win-restart">PLAY AGAIN</button>
         <button class="secondary-btn" id="btn-win-menu">MAIN MENU</button>
       </div>
     </div>
   </dialog>
-
-  <!-- Loader Scripts: Chronological Game Loading Order -->
   <script src="js/utils.js" defer></script>
   <script src="js/settings.js" defer></script>
   <script src="js/audio.js" defer></script>
@@ -337,6 +265,5 @@
   <script src="js/modal.js" defer></script>
   <script src="js/game.js" defer></script>
   <script src="js/main.js" defer></script>
-
 </body>
 </html>

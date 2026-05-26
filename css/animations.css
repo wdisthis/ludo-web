@@ -1,34 +1,25 @@
-/* ==========================================================================
-   SMOOTH TRANSITIONS & RIPPLE ANIMS (css/animations.css)
-   ========================================================================== */
-
-/* Hopping/sliding token transition along grid path */
 .token.moving {
   z-index: 20 !important;
   animation: token-hop-step 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
 @keyframes token-hop-step {
-  0% { 
-    transform: scale(1.0) translateY(0); 
+  0% {
+    transform: scale(1.0) translateY(0);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   }
-  50% { 
-    transform: scale(1.28) translateY(-14px); 
+  50% {
+    transform: scale(1.28) translateY(-14px);
     box-shadow: 0 16px 24px rgba(0, 0, 0, 0.5);
   }
-  100% { 
-    transform: scale(1.0) translateY(0); 
+  100% {
+    transform: scale(1.0) translateY(0);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   }
 }
-
-/* Linear Button Ripple swell */
 .ripple {
   position: relative;
   overflow: hidden;
 }
-
 .ripple-effect {
   position: absolute;
   border-radius: 50%;
@@ -37,24 +28,17 @@
   animation: ripple-swell 0.55s ease-out;
   pointer-events: none;
 }
-
 @keyframes ripple-swell {
   to {
     transform: scale(4.0);
     opacity: 0;
   }
 }
-
-/* ==========================================================================
-   PARTICLE BURST & CAPTURE IMPACTS
-   ========================================================================== */
-
 .capture-burst {
   position: absolute;
   pointer-events: none;
   z-index: 50;
 }
-
 .capture-spark {
   position: absolute;
   width: 8px;
@@ -63,7 +47,6 @@
   transform-origin: center;
   animation: spark-shoot 0.65s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
 }
-
 @keyframes spark-shoot {
   0% {
     transform: translate(0, 0) scale(1);
@@ -74,12 +57,6 @@
     opacity: 0;
   }
 }
-
-/* ==========================================================================
-   GLOW TARGETS & PULSES
-   ========================================================================== */
-
-/* Safe landing success burst ring */
 .safe-landing-ring {
   position: absolute;
   border: 3px solid var(--color-yellow);
@@ -88,7 +65,6 @@
   z-index: 40;
   animation: safe-ring-expand 0.8s ease-out forwards;
 }
-
 @keyframes safe-ring-expand {
   0% {
     width: 20px;
@@ -103,23 +79,17 @@
     transform: translate(-50%, -50%);
   }
 }
-
-/* pulse pulse for active indicators */
 .pulse {
   animation: element-pulse 2.0s infinite;
 }
-
 @keyframes element-pulse {
   0% { transform: scale(1.0); }
   50% { transform: scale(1.04); }
   100% { transform: scale(1.0); }
 }
-
-/* Floating animation for logo */
 .float-logo {
   animation: logo-float 4.0s ease-in-out infinite;
 }
-
 @keyframes logo-float {
   0% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
