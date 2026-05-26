@@ -90,10 +90,12 @@ body {
   align-items: center;
   gap: 12px;
 }
-.app-logo {
-  width: 48px;
-  height: 48px;
+.logo-area svg {
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s;
+}
+.logo-area:hover svg {
+  transform: rotate(15deg) scale(1.1);
 }
 .title-group {
   display: flex;

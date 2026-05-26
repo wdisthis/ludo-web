@@ -62,27 +62,23 @@
   position: absolute;
   width: 70px;
   height: 70px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--slate-dark);
-  border-radius: 14px;
-  box-shadow:
-    inset 0 0 8px rgba(0, 0, 0, 0.15),
-    0 4px 10px rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: var(--font-heading);
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--bg-primary);
+  background-color: #ffffff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1.5px solid var(--slate-dark);
+  border-radius: 12px;
+  box-shadow: 
+    inset 0 0 4px rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.25);
   user-select: none;
 }
-.dice-cube .face.front  { transform: rotateY(0deg) translateZ(35px); }
-.dice-cube .face.back   { transform: rotateY(180deg) translateZ(35px); }
-.dice-cube .face.right  { transform: rotateY(90deg) translateZ(35px); }
-.dice-cube .face.left   { transform: rotateY(-90deg) translateZ(35px); }
-.dice-cube .face.top    { transform: rotateX(90deg) translateZ(35px); }
-.dice-cube .face.bottom { transform: rotateX(-90deg) translateZ(35px); }
+.dice-cube .face.front  { background-image: url('../assets/images/dice/dice-1.png'); transform: rotateY(0deg) translateZ(35px); }
+.dice-cube .face.back   { background-image: url('../assets/images/dice/dice-6.png'); transform: rotateY(180deg) translateZ(35px); }
+.dice-cube .face.right  { background-image: url('../assets/images/dice/dice-3.png'); transform: rotateY(90deg) translateZ(35px); }
+.dice-cube .face.left   { background-image: url('../assets/images/dice/dice-4.png'); transform: rotateY(-90deg) translateZ(35px); }
+.dice-cube .face.top    { background-image: url('../assets/images/dice/dice-2.png'); transform: rotateX(90deg) translateZ(35px); }
+.dice-cube .face.bottom { background-image: url('../assets/images/dice/dice-5.png'); transform: rotateX(-90deg) translateZ(35px); }
 .dice-cube.roll-1 { transform: rotateX(360deg) rotateY(360deg); }
 .dice-cube.roll-2 { transform: rotateX(-90deg) rotateY(360deg); }
 .dice-cube.roll-3 { transform: rotateX(360deg) rotateY(-90deg); }

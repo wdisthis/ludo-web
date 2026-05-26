@@ -43,11 +43,10 @@ const LudoUI = {
   },
   
   updateSoundButtonUI() {
-    const soundImg = LudoUtils.qs('#img-sound-status');
-    if (soundImg) {
+    const soundWaves = LudoUtils.qs('#svg-sound-waves');
+    if (soundWaves) {
       const soundOn = LudoSettings.data.soundOn;
-      soundImg.src = soundOn ? 'assets/images/ui/icon-sound-on.png' : 'assets/images/ui/icon-sound-off.png';
-      soundImg.alt = soundOn ? 'Sound On' : 'Sound Off';
+      soundWaves.style.display = soundOn ? 'block' : 'none';
     }
   },
   
