@@ -4,14 +4,14 @@
     <!-- Hollow Shield Safe Zone Checkpoint (stroke outline only, fill=none) -->
     <g id="safe-shield">
       <!-- Shadow outline stroke offset -->
-      <polygon points="8,7 20,10 32,7 32,20 20,33 8,20" fill="none" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" transform="translate(0, 1.5)" opacity="0.2"/>
+      <polygon points="8,7 20,10 32,7 32,20 20,33 8,20" fill="none" stroke="#0f172a" stroke-width="1.5" stroke-linejoin="round" transform="translate(0, 1.5)" opacity="0.2"/>
       <!-- Crisp solid shield outline -->
-      <polygon points="8,7 20,10 32,7 32,20 20,33 8,20" fill="none" stroke="#1e293b" stroke-width="3.2" stroke-linejoin="round"/>
+      <polygon points="8,7 20,10 32,7 32,20 20,33 8,20" fill="none" stroke="#1e293b" stroke-width="1.5" stroke-linejoin="round"/>
     </g>
   </defs>
 
   <!-- Background Base -->
-  <rect x="0" y="0" width="600" height="600" fill="#ffffff" stroke="#1e293b" stroke-width="5"/>
+  <rect x="0" y="0" width="600" height="600" fill="#ffffff" stroke="#1e293b" stroke-width="4"/>
 
   <!-- Full Track Grid Cells (Restored crisp Slate-800 borders on every single cell) -->
   <g fill="#ffffff" stroke="#1e293b" stroke-width="1.5">
@@ -91,87 +91,87 @@
 
   <!-- Player Bases (Home Yards) -->
   <!-- Green Base (Top-Left) -->
-  <g stroke="#1e293b" stroke-width="2">
-    <rect x="0" y="0" width="240" height="240" fill="#2ecc71" stroke-width="4"/>
-    <rect x="40" y="40" width="160" height="160" rx="16" fill="#ffffff" stroke-width="2"/>
+  <g stroke="#1e293b" stroke-width="1.5">
+    <rect x="0" y="0" width="240" height="240" fill="#2ecc71"/>
+    <rect x="40" y="40" width="160" height="160" rx="16" fill="#ffffff"/>
     
     <!-- Restored hollow white socket slots -->
-    <circle cx="80" cy="80" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="80" cy="80" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="80" cy="80" r="22" fill="#ffffff"/>
+    <circle cx="80" cy="80" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
     
-    <circle cx="160" cy="80" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="160" cy="80" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="160" cy="80" r="22" fill="#ffffff"/>
+    <circle cx="160" cy="80" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
     
-    <circle cx="80" cy="160" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="80" cy="160" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="80" cy="160" r="22" fill="#ffffff"/>
+    <circle cx="80" cy="160" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
     
-    <circle cx="160" cy="160" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="160" cy="160" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="160" cy="160" r="22" fill="#ffffff"/>
+    <circle cx="160" cy="160" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
   </g>
 
   <!-- Yellow Base (Top-Right) -->
-  <g stroke="#1e293b" stroke-width="2">
-    <rect x="360" y="0" width="240" height="240" fill="#ffcc00" stroke-width="4"/>
-    <rect x="400" y="40" width="160" height="160" rx="16" fill="#ffffff" stroke-width="2"/>
+  <g stroke="#1e293b" stroke-width="1.5">
+    <rect x="360" y="0" width="240" height="240" fill="#ffcc00"/>
+    <rect x="400" y="40" width="160" height="160" rx="16" fill="#ffffff"/>
     
-    <circle cx="440" cy="80" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="440" cy="80" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="440" cy="80" r="22" fill="#ffffff"/>
+    <circle cx="440" cy="80" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
     
-    <circle cx="520" cy="80" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="520" cy="80" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="520" cy="80" r="22" fill="#ffffff"/>
+    <circle cx="520" cy="80" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
     
-    <circle cx="440" cy="160" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="440" cy="160" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="440" cy="160" r="22" fill="#ffffff"/>
+    <circle cx="440" cy="160" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
     
-    <circle cx="520" cy="160" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="520" cy="160" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="520" cy="160" r="22" fill="#ffffff"/>
+    <circle cx="520" cy="160" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
   </g>
 
   <!-- Red Base (Bottom-Left) -->
-  <g stroke="#1e293b" stroke-width="2">
-    <rect x="0" y="360" width="240" height="240" fill="#ff4d4d" stroke-width="4"/>
-    <rect x="40" y="400" width="160" height="160" rx="16" fill="#ffffff" stroke-width="2"/>
+  <g stroke="#1e293b" stroke-width="1.5">
+    <rect x="0" y="360" width="240" height="240" fill="#ff4d4d"/>
+    <rect x="40" y="400" width="160" height="160" rx="16" fill="#ffffff"/>
     
-    <circle cx="80" cy="440" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="80" cy="440" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="80" cy="440" r="22" fill="#ffffff"/>
+    <circle cx="80" cy="440" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
     
-    <circle cx="160" cy="440" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="160" cy="440" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="160" cy="440" r="22" fill="#ffffff"/>
+    <circle cx="160" cy="440" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
     
-    <circle cx="80" cy="520" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="80" cy="520" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="80" cy="520" r="22" fill="#ffffff"/>
+    <circle cx="80" cy="520" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
     
-    <circle cx="160" cy="520" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="160" cy="520" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="160" cy="520" r="22" fill="#ffffff"/>
+    <circle cx="160" cy="520" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
   </g>
 
   <!-- Blue Base (Bottom-Right) -->
-  <g stroke="#1e293b" stroke-width="2">
-    <rect x="360" y="360" width="240" height="240" fill="#3b82f6" stroke-width="4"/>
-    <rect x="400" y="400" width="160" height="160" rx="16" fill="#ffffff" stroke-width="2"/>
+  <g stroke="#1e293b" stroke-width="1.5">
+    <rect x="360" y="360" width="240" height="240" fill="#3b82f6"/>
+    <rect x="400" y="400" width="160" height="160" rx="16" fill="#ffffff"/>
     
-    <circle cx="440" cy="440" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="440" cy="440" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="440" cy="440" r="22" fill="#ffffff"/>
+    <circle cx="440" cy="440" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
     
-    <circle cx="520" cy="440" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="520" cy="440" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="520" cy="440" r="22" fill="#ffffff"/>
+    <circle cx="520" cy="440" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
     
-    <circle cx="440" cy="520" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="440" cy="520" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="440" cy="520" r="22" fill="#ffffff"/>
+    <circle cx="440" cy="520" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
     
-    <circle cx="520" cy="520" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-    <circle cx="520" cy="520" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="520" cy="520" r="22" fill="#ffffff"/>
+    <circle cx="520" cy="520" r="6" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
   </g>
 
   <!-- Center Finished Home Wedge Triangles -->
-  <g stroke="#1e293b" stroke-width="2.5">
+  <g stroke="#1e293b" stroke-width="1.5">
     <polygon points="240,240 300,300 240,360" fill="#2ecc71"/>
     <polygon points="240,240 300,300 360,240" fill="#ffcc00"/>
     <polygon points="360,240 300,300 360,360" fill="#3b82f6"/>
     <polygon points="240,360 300,300 360,360" fill="#ff4d4d"/>
     
     <!-- Central border frame -->
-    <polygon points="240,240 360,240 360,360 240,360" fill="none" stroke-width="4"/>
+    <polygon points="240,240 360,240 360,360 240,360" fill="none"/>
   </g>
 
   <!-- Safe Squares marked with Gilded Star Checkpoints (Hollow Shield) -->
@@ -194,5 +194,5 @@
   <use href="#safe-shield" x="240" y="80"/>
 
   <!-- Thick Outer Border Box -->
-  <rect x="0" y="0" width="600" height="600" fill="none" stroke="#1e293b" stroke-width="6"/>
+  <rect x="0" y="0" width="600" height="600" fill="none" stroke="#1e293b" stroke-width="4"/>
 </svg>
