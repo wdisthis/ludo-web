@@ -13,15 +13,47 @@
 }
 .token.green {
   background-image: url('../assets/images/pieces/piece-green.png');
+  filter: drop-shadow(1.5px 0 0 #14532d)
+          drop-shadow(-1.5px 0 0 #14532d)
+          drop-shadow(0 1.5px 0 #14532d)
+          drop-shadow(0 -1.5px 0 #14532d)
+          drop-shadow(1px 1px 0 #14532d)
+          drop-shadow(-1px 1px 0 #14532d)
+          drop-shadow(1px -1px 0 #14532d)
+          drop-shadow(-1px -1px 0 #14532d);
 }
 .token.yellow {
   background-image: url('../assets/images/pieces/piece-yellow.png');
+  filter: drop-shadow(1.5px 0 0 #78350f)
+          drop-shadow(-1.5px 0 0 #78350f)
+          drop-shadow(0 1.5px 0 #78350f)
+          drop-shadow(0 -1.5px 0 #78350f)
+          drop-shadow(1px 1px 0 #78350f)
+          drop-shadow(-1px 1px 0 #78350f)
+          drop-shadow(1px -1px 0 #78350f)
+          drop-shadow(-1px -1px 0 #78350f);
 }
 .token.blue {
   background-image: url('../assets/images/pieces/piece-blue.png');
+  filter: drop-shadow(1.5px 0 0 #172554)
+          drop-shadow(-1.5px 0 0 #172554)
+          drop-shadow(0 1.5px 0 #172554)
+          drop-shadow(0 -1.5px 0 #172554)
+          drop-shadow(1px 1px 0 #172554)
+          drop-shadow(-1px 1px 0 #172554)
+          drop-shadow(1px -1px 0 #172554)
+          drop-shadow(-1px -1px 0 #172554);
 }
 .token.red {
   background-image: url('../assets/images/pieces/piece-red.png');
+  filter: drop-shadow(1.5px 0 0 #7f1d1d)
+          drop-shadow(-1.5px 0 0 #7f1d1d)
+          drop-shadow(0 1.5px 0 #7f1d1d)
+          drop-shadow(0 -1.5px 0 #7f1d1d)
+          drop-shadow(1px 1px 0 #7f1d1d)
+          drop-shadow(-1px 1px 0 #7f1d1d)
+          drop-shadow(1px -1px 0 #7f1d1d)
+          drop-shadow(-1px -1px 0 #7f1d1d);
 }
 .token.clickable {
   cursor: pointer;
@@ -32,9 +64,56 @@
   cursor: pointer;
   z-index: 12;
 }
-.token.eligible:hover {
+.token.green.eligible:hover {
   transform: translateY(-8px) scale(1.22);
-  filter: drop-shadow(0 8px 12px rgba(255, 255, 255, 0.4));
+  filter: drop-shadow(1.5px 0 0 #14532d)
+          drop-shadow(-1.5px 0 0 #14532d)
+          drop-shadow(0 1.5px 0 #14532d)
+          drop-shadow(0 -1.5px 0 #14532d)
+          drop-shadow(1px 1px 0 #14532d)
+          drop-shadow(-1px 1px 0 #14532d)
+          drop-shadow(1px -1px 0 #14532d)
+          drop-shadow(-1px -1px 0 #14532d)
+          drop-shadow(0 8px 16px rgba(255, 255, 255, 0.65));
+  z-index: 15;
+}
+.token.yellow.eligible:hover {
+  transform: translateY(-8px) scale(1.22);
+  filter: drop-shadow(1.5px 0 0 #78350f)
+          drop-shadow(-1.5px 0 0 #78350f)
+          drop-shadow(0 1.5px 0 #78350f)
+          drop-shadow(0 -1.5px 0 #78350f)
+          drop-shadow(1px 1px 0 #78350f)
+          drop-shadow(-1px 1px 0 #78350f)
+          drop-shadow(1px -1px 0 #78350f)
+          drop-shadow(-1px -1px 0 #78350f)
+          drop-shadow(0 8px 16px rgba(255, 255, 255, 0.65));
+  z-index: 15;
+}
+.token.blue.eligible:hover {
+  transform: translateY(-8px) scale(1.22);
+  filter: drop-shadow(1.5px 0 0 #172554)
+          drop-shadow(-1.5px 0 0 #172554)
+          drop-shadow(0 1.5px 0 #172554)
+          drop-shadow(0 -1.5px 0 #172554)
+          drop-shadow(1px 1px 0 #172554)
+          drop-shadow(-1px 1px 0 #172554)
+          drop-shadow(1px -1px 0 #172554)
+          drop-shadow(-1px -1px 0 #172554)
+          drop-shadow(0 8px 16px rgba(255, 255, 255, 0.65));
+  z-index: 15;
+}
+.token.red.eligible:hover {
+  transform: translateY(-8px) scale(1.22);
+  filter: drop-shadow(1.5px 0 0 #7f1d1d)
+          drop-shadow(-1.5px 0 0 #7f1d1d)
+          drop-shadow(0 1.5px 0 #7f1d1d)
+          drop-shadow(0 -1.5px 0 #7f1d1d)
+          drop-shadow(1px 1px 0 #7f1d1d)
+          drop-shadow(-1px 1px 0 #7f1d1d)
+          drop-shadow(1px -1px 0 #7f1d1d)
+          drop-shadow(-1px -1px 0 #7f1d1d)
+          drop-shadow(0 8px 16px rgba(255, 255, 255, 0.65));
   z-index: 15;
 }
 @keyframes pulse-eligible-token {
