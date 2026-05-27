@@ -68,8 +68,8 @@ const LudoBoard = {
         const cellPercentage = 100 / 15;
         if (token.step === -1) {
           tokenEl.classList.add('token-base');
-          tokenEl.style.left = `${gx * cellPercentage - 2.27}%`;
-          tokenEl.style.top = `${gy * cellPercentage - 2.27}%`;
+          tokenEl.style.left = `${gx * cellPercentage - 2.6}%`;
+          tokenEl.style.top = `${gy * cellPercentage - 2.6}%`;
         } else {
           tokenEl.style.left = `${gx * cellPercentage}%`;
           tokenEl.style.top = `${gy * cellPercentage}%`;
