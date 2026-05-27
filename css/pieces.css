@@ -64,6 +64,46 @@
   cursor: pointer;
   z-index: 12;
 }
+/* Repeating Expanding Sonar Colored Wave */
+.token.eligible::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: none;
+  z-index: -1;
+  animation: eligible-wave-ping 1.8s infinite cubic-bezier(0.2, 0, 0, 1);
+}
+.token.green.eligible::after {
+  border: 2.5px solid #2ecc71;
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+}
+.token.yellow.eligible::after {
+  border: 2.5px solid #ffcc00;
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+}
+.token.blue.eligible::after {
+  border: 2.5px solid #3b82f6;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+.token.red.eligible::after {
+  border: 2.5px solid #ff4d4d;
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+}
+@keyframes eligible-wave-ping {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.3);
+    opacity: 0;
+  }
+}
 .token.green.eligible:hover {
   transform: translateY(-8px) scale(1.22);
   filter: drop-shadow(1.5px 0 0 #14532d)
@@ -118,14 +158,13 @@
 }
 @keyframes pulse-eligible-token {
   0% {
-    filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+    transform: translateY(0);
   }
   50% {
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.85));
-    transform: translateY(-2px);
+    transform: translateY(-5px);
   }
   100% {
-    filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+    transform: translateY(0);
   }
 }
 .token.stack-size-1 {
@@ -184,4 +223,45 @@
   margin: 0 !important;
   width: 5.2% !important;
   height: 5.2% !important;
+}
+
+/* Premium Floor Drop Shadow under Ludo Piece - Perfect Circle, Soft Black & Extremely Transparent */
+.token::before {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 8px; /* flat circular ellipse at the floor base */
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0) 80%);
+  pointer-events: none;
+  z-index: -1;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0.95;
+}
+.token.moving::before {
+  animation: token-shadow-hop var(--hop-duration, 0.3s) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.token.token-base::before {
+  /* Smaller shadow for base socket view */
+  width: 24px;
+  height: 6px;
+}
+@keyframes token-shadow-hop {
+  0% {
+    transform: translateX(-50%) scale(1.0);
+    opacity: 0.95;
+    filter: blur(0px);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.4);
+    opacity: 0.25; /* becomes extremely soft and highly transparent in mid-air! */
+    filter: blur(2px);
+  }
+  100% {
+    transform: translateX(-50%) scale(1.0);
+    opacity: 0.95;
+    filter: blur(0px);
+  }
 }

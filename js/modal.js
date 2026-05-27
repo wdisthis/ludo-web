@@ -155,10 +155,40 @@ const LudoModal = {
     }
   },
   
-  openWinScreen(winnerName, capturesCount, totalRolls) {
+  openWinScreen(winnersList, capturesCount, totalRolls) {
     if (this.winScreenEl) {
       const winnerDisplay = LudoUtils.qs('#winner-name-display', this.winScreenEl);
-      if (winnerDisplay) winnerDisplay.textContent = `${winnerName} wins the match!`;
+      if (winnerDisplay && winnersList.length > 0) {
+        winnerDisplay.textContent = `🏆 ${winnersList[0].name} wins the match!`;
+      }
+      
+      const ranksContainer = LudoUtils.qs('#leaderboard-ranks-container', this.winScreenEl);
+      if (ranksContainer) {
+        ranksContainer.innerHTML = '<h3>Final Leaderboard Ranks</h3>';
+        
+        winnersList.forEach((player, index) => {
+          const rankNum = index + 1;
+          let medalEmoji = '';
+          const rankClass = `rank-${rankNum}`;
+          
+          if (rankNum === 1) medalEmoji = '🥇';
+          else if (rankNum === 2) medalEmoji = '🥈';
+          else if (rankNum === 3) medalEmoji = '🥉';
+          else medalEmoji = '💀';
+          
+          const roleText = rankNum === winnersList.length ? 'Loser' : 'Finisher';
+          
+          const row = LudoUtils.createElement('div', ['rank-row', rankClass]);
+          row.innerHTML = `
+            <div class="rank-left">
+              <span class="rank-number">${rankNum}</span>
+              <span class="rank-name">${medalEmoji} ${player.name}</span>
+            </div>
+            <span class="rank-role">${roleText}</span>
+          `;
+          ranksContainer.appendChild(row);
+        });
+      }
       
       const capDisplay = LudoUtils.qs('#stat-captures', this.winScreenEl);
       if (capDisplay) capDisplay.textContent = capturesCount;

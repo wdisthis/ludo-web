@@ -17,17 +17,39 @@ const LudoDice = {
     
     LudoAudio.playSFX('dice-roll');
     
-    if (this.cubeEl) {
-      this.cubeEl.className = 'dice-cube rolling';
-    }
-    
-    await LudoUtils.delay(750);
-    
     const value = LudoUtils.randomRange(1, 6);
     this.lastValue = value;
     
     if (this.cubeEl) {
-      this.cubeEl.className = `dice-cube roll-${value}`;
+      const baseRot = {
+        1: { x: 0, y: 0 },
+        2: { x: -90, y: 0 },
+        3: { x: 0, y: -90 },
+        4: { x: 0, y: 90 },
+        5: { x: 90, y: 0 },
+        6: { x: 0, y: 180 }
+      };
+      
+      const xSpins = (3 + Math.floor(Math.random() * 3)) * 360;
+      const ySpins = (3 + Math.floor(Math.random() * 3)) * 360;
+      
+      const base = baseRot[value];
+      const finalRot = `rotateX(${xSpins + base.x - 12}deg) rotateY(${ySpins + base.y + 18}deg)`;
+      
+      this.cubeEl.style.setProperty('--final-rot', finalRot);
+      
+      this.cubeEl.className = 'dice-cube';
+      void this.cubeEl.offsetWidth; // trigger reflow
+      this.cubeEl.className = 'dice-cube rolling';
+      
+      // Wait for 1200ms animation duration to finish
+      await LudoUtils.delay(1200);
+      
+      // Set the final inline transform so it freezes in place perfectly!
+      this.cubeEl.className = 'dice-cube';
+      this.cubeEl.style.transform = finalRot;
+    } else {
+      await LudoUtils.delay(1200);
     }
     
     this.isRolling = false;
@@ -37,7 +59,18 @@ const LudoDice = {
   setValue(value) {
     this.lastValue = value;
     if (this.cubeEl) {
-      this.cubeEl.className = `dice-cube roll-${value}`;
+      const baseRot = {
+        1: { x: 0, y: 0 },
+        2: { x: -90, y: 0 },
+        3: { x: 0, y: -90 },
+        4: { x: 0, y: 90 },
+        5: { x: 90, y: 0 },
+        6: { x: 0, y: 180 }
+      };
+      const base = baseRot[value];
+      const finalRot = `rotateX(${base.x - 12}deg) rotateY(${base.y + 18}deg)`;
+      this.cubeEl.className = 'dice-cube';
+      this.cubeEl.style.transform = finalRot;
     }
   },
   

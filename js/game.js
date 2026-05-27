@@ -19,6 +19,7 @@ const LudoGame = {
   start(mode, configs) {
     this.gameMode = mode;
     this.players = [];
+    this.winnersList = [];
     this.matchStats.captures = 0;
     this.matchStats.rollsCount = 0;
     
@@ -56,7 +57,7 @@ const LudoGame = {
     do {
       this.activePlayerIndex = (this.activePlayerIndex + 1) % 4;
       iterations++;
-    } while (this.players[this.activePlayerIndex].type === 'none' && iterations < 5);
+    } while ((this.players[this.activePlayerIndex].type === 'none' || this.players[this.activePlayerIndex].isFinished()) && iterations < 5);
     
     const activePlayer = this.getActivePlayer();
     
@@ -132,7 +133,42 @@ const LudoGame = {
     
     this.executeMove(tokenToMove);
   },
-  
+  async rewindToken(otherPlayer, otherToken) {
+    const startStep = otherToken.step;
+    const delayTime = 130; // 130ms per step is the golden speed (readable, elegant, highly satisfying!)
+    
+    const tokenEl = LudoUtils.qs(`.token[data-player-id="${otherPlayer.id}"][data-token-id="${otherToken.id}"]`, LudoBoard.piecesContainer);
+    if (tokenEl) {
+      tokenEl.style.zIndex = '40';
+      tokenEl.style.transition = 'left 0.11s linear, top 0.11s linear';
+    }
+    
+    for (let s = startStep - 1; s >= 0; s--) {
+      otherToken.step = s;
+      const coords = otherToken.getCoordinates();
+      LudoAudio.playSFX('piece-move');
+      
+      if (tokenEl) {
+        tokenEl.style.left = `${coords[0] * (100 / 15)}%`;
+        tokenEl.style.top = `${coords[1] * (100 / 15)}%`;
+      }
+      
+      await LudoUtils.delay(delayTime);
+    }
+    
+    // Final reset to base socket
+    otherToken.resetToBase();
+    if (tokenEl) {
+      const coords = otherToken.getCoordinates();
+      tokenEl.classList.add('token-base');
+      tokenEl.style.transition = 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)';
+      tokenEl.style.left = `${coords[0] * (100 / 15) - 2.6}%`;
+      tokenEl.style.top = `${coords[1] * (100 / 15) - 2.6}%`;
+    }
+    
+    LudoAudio.playSFX('piece-safe');
+  },
+
   async executeMove(token) {
     const activePlayer = this.getActivePlayer();
     const roll = this.currentRollValue;
@@ -151,23 +187,34 @@ const LudoGame = {
       }
     }
     
-    const delayTime = LudoSettings.data.aiSpeed === 'fast' ? 120 : 250;
+    const delayTime = LudoSettings.data.aiSpeed === 'fast' ? 140 : 250;
+    const tokenEl = LudoUtils.qs(`.token[data-player-id="${activePlayer.id}"][data-token-id="${token.id}"]`, LudoBoard.piecesContainer);
+    
+    // Dynamically calculate transition duration to match movement audio play exactly (85% of step delay)
+    const transitionSecs = (delayTime * 0.85) / 1000;
+    if (tokenEl) {
+      tokenEl.style.transition = `left ${transitionSecs}s cubic-bezier(0.25, 0.46, 0.45, 0.94), top ${transitionSecs}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+      tokenEl.style.setProperty('--hop-duration', `${transitionSecs}s`);
+    }
     
     for (const targetStep of steps) {
       token.step = targetStep;
-      
       const coords = token.getCoordinates();
       LudoAudio.playSFX('piece-move');
       
-      const tokenEl = LudoUtils.qs(`.token[data-player-id="${activePlayer.id}"][data-token-id="${token.id}"]`, LudoBoard.piecesContainer);
       if (tokenEl) {
-        tokenEl.classList.add('moving');
+        tokenEl.style.zIndex = '50';
+        tokenEl.classList.remove('token-base');
+        
+        // Retrigger hop CSS animation smoothly matching the exact horizontal travel speed
+        tokenEl.style.animation = 'none';
+        void tokenEl.offsetWidth; // trigger reflow
+        tokenEl.style.animation = `token-hop-step ${transitionSecs}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+        
         tokenEl.style.left = `${coords[0] * (100/15)}%`;
         tokenEl.style.top = `${coords[1] * (100/15)}%`;
-        setTimeout(() => tokenEl.classList.remove('moving'), 300);
       }
       
-      LudoBoard.update(this.players);
       await LudoUtils.delay(delayTime);
     }
     
@@ -179,17 +226,34 @@ const LudoGame = {
       LudoBoard.triggerSafeAnimation(finalCoords[0], finalCoords[1]);
       
       if (activePlayer.isFinished()) {
-        this.gameState = 'gameover';
-        LudoAudio.stopBGM();
-        LudoAudio.playSFX('win');
-        LudoModal.openWinScreen(activePlayer.name, this.matchStats.captures, this.matchStats.rollsCount);
-        return;
+        if (!this.winnersList.includes(activePlayer)) {
+          this.winnersList.push(activePlayer);
+          LudoUI.logMessage(`🏆 ${activePlayer.name} has finished all tokens! Ranked #${this.winnersList.length}!`, 'sys');
+        }
+        
+        const activeParticipants = this.players.filter(p => p.type !== 'none');
+        
+        if (this.winnersList.length >= activeParticipants.length - 1) {
+          // Push any remaining player who hasn't finished as the last place (loser)
+          activeParticipants.forEach(p => {
+            if (!this.winnersList.includes(p)) {
+              this.winnersList.push(p);
+            }
+          });
+          
+          this.gameState = 'gameover';
+          LudoAudio.stopBGM();
+          LudoAudio.playSFX('win');
+          LudoModal.openWinScreen(this.winnersList, this.matchStats.captures, this.matchStats.rollsCount);
+          return;
+        }
       }
     } else if (LudoRules.isSafeCell(finalCoords[0], finalCoords[1])) {
       LudoAudio.playSFX('piece-safe');
       LudoBoard.triggerSafeAnimation(finalCoords[0], finalCoords[1]);
     } else {
       let isCaptured = false;
+      const capturePromises = [];
       
       for (const otherPlayer of this.players) {
         if (otherPlayer.id === activePlayer.id || otherPlayer.type === 'none' || otherPlayer.isFinished()) continue;
@@ -199,9 +263,11 @@ const LudoGame = {
           
           const otherCoords = otherToken.getCoordinates();
           if (otherCoords[0] === finalCoords[0] && otherCoords[1] === finalCoords[1]) {
-            otherToken.resetToBase();
             isCaptured = true;
             LudoUI.logMessage(`${activePlayer.name} captured ${otherPlayer.name}'s token!`, 'sys');
+            
+            // Initiate fast rollback traceback animation
+            capturePromises.push(this.rewindToken(otherPlayer, otherToken));
           }
         }
       }
@@ -211,10 +277,13 @@ const LudoGame = {
         LudoAudio.playSFX('piece-capture');
         LudoBoard.triggerCaptureAnimation(finalCoords[0], finalCoords[1]);
         
-        LudoBoard.update(this.players);
-        await LudoUtils.delay(1000);
+        // Wait for trace-back rewinding to complete!
+        await Promise.all(capturePromises);
         
-        if (roll === 6) {
+        LudoBoard.update(this.players);
+        await LudoUtils.delay(500);
+        
+        if (roll === 6 && !activePlayer.isFinished()) {
           LudoUI.logMessage(`Roll was 6! ${activePlayer.name} gets a bonus turn.`, 'sys');
           if (activePlayer.type === 'human') {
             LudoDice.enable((val) => this.handleRollResult(val));
@@ -228,7 +297,9 @@ const LudoGame = {
       }
     }
     
-    if (roll === 6) {
+    LudoBoard.update(this.players);
+    
+    if (roll === 6 && !activePlayer.isFinished()) {
       LudoUI.logMessage(`Roll was 6! ${activePlayer.name} gets another turn.`, 'sys');
       if (activePlayer.type === 'human') {
         LudoDice.enable((val) => this.handleRollResult(val));

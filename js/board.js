@@ -111,13 +111,36 @@ const LudoBoard = {
     const container = LudoUtils.qs('#board-effects-container');
     if (!container) return;
     
+    // 1. Create central explosion cloud
+    const cloud = LudoUtils.createElement('div', ['explosion-cloud']);
+    cloud.style.left = `${(gx + 0.5) * (100 / 15)}%`;
+    cloud.style.top = `${(gy + 0.5) * (100 / 15)}%`;
+    container.appendChild(cloud);
+    
+    // 2. Create shockwave expanding ring
+    const shockwave = LudoUtils.createElement('div', ['explosion-shockwave']);
+    shockwave.style.left = `${(gx + 0.5) * (100 / 15)}%`;
+    shockwave.style.top = `${(gy + 0.5) * (100 / 15)}%`;
+    container.appendChild(shockwave);
+    
+    // 3. Create 8 directional explosion spikes
+    for (let i = 0; i < 8; i++) {
+      const spike = LudoUtils.createElement('div', ['explosion-spike']);
+      spike.style.left = `${(gx + 0.5) * (100 / 15)}%`;
+      spike.style.top = `${(gy + 0.5) * (100 / 15)}%`;
+      spike.style.setProperty('--angle', `${i * 45}deg`);
+      container.appendChild(spike);
+      setTimeout(() => spike.remove(), 600);
+    }
+    
+    // 4. Create standard capture sparks
     const burst = LudoUtils.createElement('div', ['capture-burst']);
     burst.style.left = `${(gx + 0.5) * (100 / 15)}%`;
     burst.style.top = `${(gy + 0.5) * (100 / 15)}%`;
     
     for (let i = 0; i < 16; i++) {
       const angle = (i / 16) * Math.PI * 2;
-      const speed = LudoUtils.randomRange(20, 60);
+      const speed = LudoUtils.randomRange(25, 75);
       const dx = `${Math.cos(angle) * speed}px`;
       const dy = `${Math.sin(angle) * speed}px`;
       
@@ -132,7 +155,11 @@ const LudoBoard = {
     }
     
     container.appendChild(burst);
-    setTimeout(() => burst.remove(), 700);
+    setTimeout(() => {
+      cloud.remove();
+      shockwave.remove();
+      burst.remove();
+    }, 750);
   },
   
   triggerSafeAnimation(gx, gy) {
